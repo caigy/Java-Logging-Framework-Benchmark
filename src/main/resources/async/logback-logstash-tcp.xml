@@ -1,0 +1,42 @@
+<configuration>
+    <timestamp key="runTimestamp" datePattern="HH:mm:ss.SSS"/>
+
+    <appender name="logstash-tcp" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <destination>172.24.6.206:11111</destination>
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <timestamp>
+                    <timeZone>UTC</timeZone>
+                </timestamp>
+                <pattern>
+                    <pattern>
+                        {
+                        "timestamp":"%d",
+                        "level": "%p",
+                        "thread_name": "%thread",
+                        "class": "%logger",
+                        "message": "%message"
+                        }
+                    </pattern>
+                </pattern>
+            </providers>
+        </encoder>
+    </appender>
+
+    <!--<appender name="logstash-tcp" class="ch.qos.logback.classic.net.SocketAppender">-->
+    <!--<remoteHost>39.104.82.57</remoteHost>-->
+    <!--<port>11111</port>-->
+    <!--<reconnectionDelay>10000</reconnectionDelay>-->
+    <!--</appender>-->
+
+    <!--<appender name="Async" class="ch.qos.logback.classic.AsyncAppender" queueSize="1000000" discardingThreshold="0">-->
+        <!--<appender-ref ref="logstash-tcp"/>-->
+    <!--</appender>-->
+    <appender name="Async" class="net.logstash.logback.appender.LoggingEventAsyncDisruptorAppender">
+        <waitStrategyType>timeoutBlocking{10,milliseconds}</waitStrategyType>
+        <appender-ref ref="logstash-tcp"/>
+    </appender>
+    <root level="all">
+        <appender-ref ref="Async"/>
+    </root>
+</configuration>

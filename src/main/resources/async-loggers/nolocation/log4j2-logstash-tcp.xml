@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <Socket name="Socket" host="172.24.6.206" port="11111">
+            <PatternLayout pattern="{&quot;@timestamp&quot;:&quot;%d{ISO8601}&quot;,&quot;timestamp&quot;:&quot;%d&quot;,&quot;level&quot;:&quot;%p&quot;,&quot;thread_name&quot;:&quot;%thread&quot;,&quot;class&quot;:&quot;%c&quot;,&quot;message&quot;:&quot;%m&quot;}%n" />
+            <!--<JsonLayout compact="true" eventEol="true">-->
+            <!--</JsonLayout>-->
+        </Socket>
+        <!--<Console name="STDOUT" target="SYSTEM_OUT">-->
+            <!--<JsonLayout compact="true" eventEol="true">-->
+            <!--</JsonLayout>-->
+        <!--</Console>-->
+    </Appenders>
+
+    <Loggers>
+        <asyncRoot level="all" includeLocation="false">
+            <AppenderRef ref="Socket"/>
+            <!--<AppenderRef ref="STDOUT"/>-->
+        </asyncRoot>
+    </Loggers>
+</Configuration>

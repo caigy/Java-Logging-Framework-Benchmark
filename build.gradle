@@ -11,6 +11,8 @@ ext.log4j2Version = '2.11.0'
 ext.logbackVersion = '1.2.3'
 ext.disruptorVersion = '3.3.6'
 ext.julToSlf4jVersion = '1.7.25'
+ext.logbackLogstashEncoderVersion = '4.11'
+ext.jacksonVersion = '2.9.6'
 
 apply plugin: 'java-library'
 apply plugin: 'application'
@@ -37,6 +39,13 @@ dependencies {
   	
   	// Logback
   	compile group: 'ch.qos.logback', name: 'logback-classic', version: logbackVersion
+
+	//
+	compile group: 'net.logstash.logback', name: 'logstash-logback-encoder', version: logbackLogstashEncoderVersion
+
+	// log4j2 json
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: jacksonVersion
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: jacksonVersion
 }
 
 run {

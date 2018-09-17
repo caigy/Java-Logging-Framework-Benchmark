@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration>
   <Appenders>
-    <File name="File" bufferedIO="true" fileName="logs/log4j2-file-sync-${date:HH:mm:ss.SSS}.log">
-      <PatternLayout pattern="%d %p %m%n" />
-    </File>
+    <RandomAccessFile name="File" bufferedIO="true" fileName="logs/log4j2-file-sync-${date:HH:mm:ss.SSS}.log">
+      <PatternLayout pattern="%d %p %c %m%n" />
+    </RandomAccessFile>
   </Appenders>
+
   <Loggers>
-    <Root level="all" includeLocation="false">
+    <asyncRoot level="all" includeLocation="false">
       <AppenderRef ref="File" />
-    </Root>
+    </asyncRoot>
   </Loggers>
 </Configuration>

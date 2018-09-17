@@ -47,6 +47,11 @@ public class Benchmark {
 			
 			// Increase asynchronous logger buffer size to 1M messages
 			System.setProperty("AsyncLogger.RingBufferSize", "1048576");
+
+			// Support gc-free ThreadContextMap
+			System.setProperty("log4j2.garbagefreeThreadContextMap", "true");
+
+
 			
 			// Use a config file with location enabled?
 			if (framework.toLowerCase().contains("location")) {
